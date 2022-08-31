@@ -1,0 +1,50 @@
+<div class="ui container">
+   <form action="/api/img/add" class="ui form"
+      method="post">
+      <div class="ui two fields">
+         <div class="field">
+            <label for="name">Movie Name</label>
+            <input type="text" name="name">
+         </div>
+         <div class="field">
+            <label for="type">Movie Type</label>
+            <select name="type" id="">
+               <option value="action">Action
+               </option>
+               <option value="fantasy">Fantasy
+               </option>
+               <option value="animation">Animation
+               </option>
+               <option value="scifi">Sci-Fi
+               </option>
+            </select>
+         </div>
+      </div>
+      <!-- HERE WE NEED TO USE FILEPOND -->
+      <div class="ui field">
+         <label for="img">Image</label>
+         <input type="file" name="img" id="img"
+            class="filepond filepond--item">
+      </div>
+      <button class="ui fluid blue button"
+         type="submit">Save</button>
+   </form>
+</div>
+
+<br><br>
+<div class="ui container">
+   <% if(imgs) { %>
+      <div class="ui small stackable images ">
+          <% imgs.forEach(m => { %>
+            <% if(m.imgType==='video/mp4') { %>
+            <video width="320" height="240" controls>
+          <source src="<%= m.coverImagePath %>" type="video/mp4"alt="" class="ui image" style="height:100px">
+         </video>
+         <% } %>
+         <% if(m.imgType==='image/jpeg' || m.imgType==='image/jpg' || m.imgType==='image/png') { %>
+         <img src="<%= m.coverImagePath %>" alt="" class="ui image">
+         <% } %>
+          <% }) %>
+      </div>
+  <% } %>
+</div>
