@@ -30,4 +30,15 @@ function saveImage(imgs, imgEncoded) {
    }
 }
 
+// get API Call
+router.get('/getImg' , async(req,res)=>{
+   try{
+      const image = await images.find().lean().exec();
+      res.json({image});
+   } catch(err) {
+      res.status(500).end(err)
+   }
+
+})
+
 module.exports = router;

@@ -2,7 +2,7 @@ const express = require('express');
 const connectToMongo = require('./db');
 const expressLayouts = require('express-ejs-layouts');
 const images= require('./modules/images');
-const cors = require('cors');  // this is used to manage cross origin  flaw which restricts http request form browser
+// const cors = require('cors');  // this is used to manage cross origin  flaw which restricts http request form browser
 const bodyParser = require('body-parser');
 require("dotenv").config();
 connectToMongo();
@@ -11,7 +11,7 @@ const app = express();  // it returns various useful functions which is used to 
 
 const port = process.env.PORT;
 // app.use(imageUpload());
-app.use(cors());
+
 app.set("view engine", "ejs");
 app.use(expressLayouts);
 app.use(bodyParser.json({limit: '50mb'}));
@@ -29,7 +29,7 @@ app.get('/' ,async (req,res)=>{
     }
 })
 
-app.use('/api/auth', require('./routers/auth'));
+// app.use('/api/auth', require('./routers/auth'));
 
 app.use('/api/img' , require('./routers/img'));
 
